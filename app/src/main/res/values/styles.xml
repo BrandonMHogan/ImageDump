@@ -1,0 +1,36 @@
+<resources>
+
+    <style name="MyLightTheme" parent="Base.AppTheme.Light"/>
+
+    <!-- Base light theme containing all styles -->
+    <style name="Base.AppTheme.Light" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <!-- Use this to switch to Dark theme -->
+    <style name="MyDarkTheme" parent="Base.AppTheme.Dark"/>
+
+    <!-- Base dark theme containing all styles -->
+    <style name="Base.AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+    <!-- Base splash theme -->
+    <style name="SplashTheme" parent="Base.AppTheme.Light">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>

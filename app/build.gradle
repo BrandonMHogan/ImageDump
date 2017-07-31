@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.brandonhogan.imagedump"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        buildConfigField 'String', 'END_POINT', '"http://10.0.2.2:8080/"' //Localhost
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            applicationIdSuffix '.debug'
+            testCoverageEnabled true
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // supportLib
+    implementation rootProject.ext.supportLib
+    implementation rootProject.ext.supportLibAppCompat
+    implementation rootProject.ext.supportLibDesign
+    implementation rootProject.ext.supportLibRecyclerview
+    implementation rootProject.ext.supportLibVectorDrawable
+    implementation rootProject.ext.supportLibConstraintLayout
+
+    // architecture components
+    implementation rootProject.ext.archCompLifecycle
+    implementation rootProject.ext.archCompLifecycleExt
+    kapt rootProject.ext.archCompLifecycleCompiler
+
+    // room database
+    implementation rootProject.ext.archCompRoom
+    kapt rootProject.ext.archCompRoomCompiler
+    implementation rootProject.ext.archRoomRxJava
+
+    // timber
+    implementation rootProject.ext.timber
+
+    // dagger
+    implementation  rootProject.ext.dagger
+    kapt            rootProject.ext.daggerApt
+
+    // rx
+    implementation rootProject.ext.rxJava
+    implementation rootProject.ext.rxAndroid
+    implementation rootProject.ext.rxKotlin
+
+    // net
+    implementation rootProject.ext.retrofit
+    implementation rootProject.ext.okHttpInterceptor
+    implementation rootProject.ext.gson
+    implementation rootProject.ext.rxJavaAdapter
+    implementation rootProject.ext.gsonConverter
+
+    // leak canary
+    debugImplementation     rootProject.ext.leakCanary
+    releaseImplementation   rootProject.ext.leakCanaryNoOp
+    testImplementation      rootProject.ext.leakCanaryNoOp
+
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation 'junit:junit:4.12'
+}

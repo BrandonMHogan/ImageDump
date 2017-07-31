@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ImageDump</string>
+    <string name="pref_key_theme_dark">prefKeyThemeDark</string>
+</resources>
