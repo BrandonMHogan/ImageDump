@@ -33,7 +33,7 @@ class DisplayPresenter @Inject constructor(val schedulerProvider: SchedulerProvi
         redditManager.getAwwHot()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribe({ item: DisplayItem ->
+                .subscribe({ items: ArrayList<DisplayItem> ->
 
                     Timber.d("Made it!")
 

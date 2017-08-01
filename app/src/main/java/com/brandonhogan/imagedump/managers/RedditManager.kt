@@ -1,7 +1,7 @@
 package com.brandonhogan.imagedump.managers
 
 import com.brandonhogan.imagedump.network.RedditAPI
-import com.brandonhogan.imagedump.network.requests.RedditAwwResponse
+import com.brandonhogan.imagedump.network.responses.RedditResponse
 import com.brandonhogan.imagedump.repository.models.DisplayItem
 import io.reactivex.Observable
 import timber.log.Timber
@@ -14,17 +14,22 @@ import timber.log.Timber
 
 class RedditManager constructor(val api: RedditAPI) {
 
-    fun getAwwHot(): Observable<DisplayItem> {
+    fun getAwwHot(): Observable<ArrayList<DisplayItem>> {
 
         return Observable.create { subscribe ->
 
-            api.getAwwHot("0", "10").subscribe({ response: RedditAwwResponse ->
+            api.getAwwHot("0", "2").subscribe({ response: RedditResponse ->
 
-                Timber.d(response.data.children.get(0).data.author)
-                Timber.d(response.data.children.get(0).data.title)
+                val displayItems: ArrayList<DisplayItem> = DisplayItem.fromResponse(response)
 
-                Timber.d(response.toString())
-                subscribe.onNext(DisplayItem(1, "title", "desc", "source"))
+
+
+//                val data: JSONObject = response.getJSONObject("data")
+//                val items: JSONArray = data.getJSONArray("children")
+//
+//                val displayItems: ArrayList<DisplayItem> = DisplayItem.fromJson(items)
+
+                subscribe.onNext(displayItems)
                 subscribe.onComplete()
 
             }, { error ->
