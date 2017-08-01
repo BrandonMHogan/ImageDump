@@ -6,6 +6,7 @@ import com.brandonhogan.imagedump.features.splash.SplashContract
 import com.brandonhogan.imagedump.features.splash.SplashPresenter
 import com.brandonhogan.imagedump.injection.schedulers.SchedulerProvider
 import com.brandonhogan.imagedump.injection.scopes.ActivityScope
+import com.brandonhogan.imagedump.managers.RedditManager
 import dagger.Module
 import dagger.Provides
 
@@ -26,7 +27,7 @@ class ActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideDisplayPresenter(schedulerProvider: SchedulerProvider): DisplayContract.Presenter {
-        return DisplayPresenter(schedulerProvider)
+    fun provideDisplayPresenter(redditManager: RedditManager, schedulerProvider: SchedulerProvider): DisplayContract.Presenter {
+        return DisplayPresenter(schedulerProvider, redditManager)
     }
 }

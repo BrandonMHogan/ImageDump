@@ -5,4 +5,19 @@
     <dimen name="splash_logo_width">100dp</dimen>
     <dimen name="splash_logo_height">100dp</dimen>
 
+
+    <!-- Aww Item -->
+    <dimen name="aww_item_padding">4dp</dimen>
+    <dimen name="aww_item_margin_bottom">6dp</dimen>
+    <dimen name="aww_item_margin_top">6dp</dimen>
+    <dimen name="aww_item_min_height">250dp</dimen>
+
+    <!-- Aww Item Content -->
+    <dimen name="aww_item_divider_height">1dp</dimen>
+    <dimen name="aww_item_divider_margin_top">5dp</dimen>
+    <dimen name="aww_item_title_size">16sp</dimen>
+    <dimen name="aww_item_title_margin_bottom">5sp</dimen>
+    <dimen name="aww_item_author_size">8sp</dimen>
+    <dimen name="aww_item_date_size">8sp</dimen>
+
 </resources>

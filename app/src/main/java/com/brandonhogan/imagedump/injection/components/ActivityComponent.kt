@@ -17,5 +17,5 @@ import dagger.Component
 interface ActivityComponent {
 
     fun inject(splashActivity: SplashActivity)
-    fun inject(introActivity: DisplayActivity)
+    fun inject(displayActivity: DisplayActivity)
 }

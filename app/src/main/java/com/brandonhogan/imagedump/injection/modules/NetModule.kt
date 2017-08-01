@@ -2,6 +2,7 @@ package com.brandonhogan.imagedump.injection.modules
 
 import android.os.Environment
 import com.brandonhogan.imagedump.injection.scopes.AppScope
+import com.brandonhogan.imagedump.network.RedditAPI
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -63,5 +64,23 @@ class NetModule {
         val gsonBuilder = GsonBuilder()
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
         return gsonBuilder.create()
+    }
+
+    @AppScope
+    @Provides
+    fun provideReddit(@Named("non_cached") client: OkHttpClient, gson: Gson): Retrofit {
+        return Retrofit.Builder()
+                .client(client)
+                .baseUrl("https://www.reddit.com")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+    }
+
+
+    @AppScope
+    @Provides
+    fun providesAPI(retrofit: Retrofit): RedditAPI {
+        return retrofit.create(RedditAPI::class.java)
     }
 }

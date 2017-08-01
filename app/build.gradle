@@ -28,7 +28,7 @@ android {
             debuggable true
             minifyEnabled false
             applicationIdSuffix '.debug'
-            testCoverageEnabled true
+            //testCoverageEnabled true
         }
     }
 
@@ -47,6 +47,7 @@ dependencies {
     implementation rootProject.ext.supportLibRecyclerview
     implementation rootProject.ext.supportLibVectorDrawable
     implementation rootProject.ext.supportLibConstraintLayout
+    implementation rootProject.ext.supportLibCardview
 
     // architecture components
     implementation rootProject.ext.archCompLifecycle
