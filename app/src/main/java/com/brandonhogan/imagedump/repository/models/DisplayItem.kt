@@ -1,6 +1,7 @@
 package com.brandonhogan.imagedump.repository.models
 
 import com.brandonhogan.imagedump.logic.network.responses.RedditResponse
+import com.brandonhogan.imagedump.logic.utils.Utils
 
 /**
  * @Creator         bhogan
@@ -13,7 +14,7 @@ class DisplayItem constructor(
     var title: String,
     var author: String,
     var createdUtc: Long,
-    var url: String,
+    var source: String,
     var thumbnail: String,
     var stickied: Boolean
 
@@ -25,7 +26,14 @@ class DisplayItem constructor(
 
             val items = response.data.children.map {
                 val item = it.data
-                DisplayItem(item.title, item.author, item.created_utc, item.url, item.thumbnail, item.stickied)
+
+                var thumbnail = item.thumbnail
+                var source = item.preview.images.get(0).source.url
+
+                thumbnail = thumbnail.replace("amp;s", "")
+                source = source.replace("amp;s", "")
+
+                DisplayItem(item.title, item.author, item.created_utc, source, thumbnail, item.stickied)
             }
 
             return ArrayList(items.sortedBy { it.createdUtc })

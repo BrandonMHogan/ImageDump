@@ -27,5 +27,8 @@ class RedditResponseDataChildrenData constructor(
         var created_utc: Long,
 
         @SerializedName("stickied")
-        var stickied: Boolean
+        var stickied: Boolean,
+
+        @SerializedName("preview")
+        var preview: RedditResponseDataChildrenDataPreview
 )
