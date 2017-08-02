@@ -45,6 +45,7 @@ ext {
     gsonVersion = '2.8.0'
     leakCanaryVersion = '1.5.1'
     archCompVersion = '1.0.0-alpha5'
+    glideVersion = '4.0.0'
 
 
     //supportLib
@@ -99,6 +100,10 @@ ext {
     archCompRoom = "android.arch.persistence.room:runtime:$archCompVersion"
     archRoomRxJava = "android.arch.persistence.room:rxjava2:$archCompVersion"
     archCompRoomCompiler = "android.arch.persistence.room:compiler:$archCompVersion"
+
+    //Glide
+    glide = "com.github.bumptech.glide:glide:$glideVersion"
+    glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
 
 }
 

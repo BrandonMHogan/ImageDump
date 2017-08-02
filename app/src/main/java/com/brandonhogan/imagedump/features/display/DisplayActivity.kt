@@ -25,6 +25,7 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
     lateinit var presenter: DisplayContract.Presenter
 
     lateinit private var scrollListener: EndlessRecyclerViewScrollListener
+    lateinit private var adapter: DisplayAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +51,9 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
             }
         }
 
+        adapter = DisplayAdapter(ArrayList<DisplayItem>())
+        display_list.adapter = adapter
         display_list.addOnScrollListener(scrollListener)
-        display_list.adapter = DisplayAdapter(ArrayList<DisplayItem>())
         swipe_refresh.setOnRefreshListener(this)
 
         presenter.loadMore(0)
@@ -59,5 +61,9 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
 
     override fun onRefresh() {
         scrollListener.resetState()
+    }
+
+    override fun loadMore(items: ArrayList<DisplayItem>) {
+        adapter.addMore(items)
     }
 }

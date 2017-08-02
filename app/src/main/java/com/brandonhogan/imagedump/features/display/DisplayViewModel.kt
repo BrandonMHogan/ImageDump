@@ -1,6 +1,7 @@
 package com.brandonhogan.imagedump.features.display
 
 import android.arch.lifecycle.ViewModel
+import com.brandonhogan.imagedump.repository.models.DisplayItem
 
 /**
  * @Creator         bhogan
@@ -9,5 +10,7 @@ import android.arch.lifecycle.ViewModel
  */
 
 class DisplayViewModel: ViewModel() {
+
+    var items = ArrayList<DisplayItem>()
 
 }

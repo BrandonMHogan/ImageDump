@@ -30,10 +30,15 @@ class DisplayPresenter @Inject constructor(val schedulerProvider: SchedulerProvi
 
     override fun loadMore(page: Int) {
 
-        redditManager.getAwwHot()
+        Timber.d("{aza}     Page is currently: $page")
+
+        redditManager.getAwwHot(page)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe({ items: ArrayList<DisplayItem> ->
+
+                    model?.items = items
+                    view?.loadMore(items)
 
                     Timber.d("Made it!")
 

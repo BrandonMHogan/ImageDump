@@ -78,6 +78,10 @@ dependencies {
     implementation rootProject.ext.rxJavaAdapter
     implementation rootProject.ext.gsonConverter
 
+    // glide
+    implementation rootProject.ext.glide
+    kapt rootProject.ext.glideCompiler
+
     // leak canary
     debugImplementation     rootProject.ext.leakCanary
     releaseImplementation   rootProject.ext.leakCanaryNoOp
