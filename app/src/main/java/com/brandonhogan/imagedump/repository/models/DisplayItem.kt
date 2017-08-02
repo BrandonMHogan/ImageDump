@@ -1,6 +1,6 @@
 package com.brandonhogan.imagedump.repository.models
 
-import com.brandonhogan.imagedump.network.responses.RedditResponse
+import com.brandonhogan.imagedump.logic.network.responses.RedditResponse
 
 /**
  * @Creator         bhogan

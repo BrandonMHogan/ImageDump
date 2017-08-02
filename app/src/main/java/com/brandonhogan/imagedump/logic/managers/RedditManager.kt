@@ -1,8 +1,9 @@
-package com.brandonhogan.imagedump.managers
+package com.brandonhogan.imagedump.logic.managers
 
-import com.brandonhogan.imagedump.network.RedditAPI
-import com.brandonhogan.imagedump.network.responses.RedditResponse
+import com.brandonhogan.imagedump.logic.network.RedditAPI
+import com.brandonhogan.imagedump.logic.network.responses.RedditResponse
 import com.brandonhogan.imagedump.repository.models.DisplayItem
+import com.brandonhogan.imagedump.repository.models.DisplayItemCombined
 import io.reactivex.Observable
 import timber.log.Timber
 
@@ -14,15 +15,21 @@ import timber.log.Timber
 
 class RedditManager constructor(val api: RedditAPI) {
 
-    fun getAwwHot(page: Int = 0): Observable<ArrayList<DisplayItem>> {
+    // Keeps track of the after identifier
+    var after = ""
 
-        val range = 10
-        val placement = page * range
+    fun getAwwHot(reset: Boolean): Observable<ArrayList<DisplayItem>> {
+
+        if (reset)
+            after = ""
+
+        Timber.d("{azza}        after = $after")
 
         return Observable.create { subscribe ->
 
-            api.getAwwHot(placement, placement + range).subscribe({ response: RedditResponse ->
+            api.getAwwHot(after, "10").subscribe({ response: RedditResponse ->
 
+                after = response.data.after
                 val displayItems: ArrayList<DisplayItem> = DisplayItem.fromResponse(response)
 
                 subscribe.onNext(displayItems)

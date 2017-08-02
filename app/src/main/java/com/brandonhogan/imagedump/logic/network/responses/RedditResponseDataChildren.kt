@@ -1,4 +1,4 @@
-package com.brandonhogan.imagedump.network.responses
+package com.brandonhogan.imagedump.logic.network.responses
 
 import com.google.gson.annotations.SerializedName
 
@@ -8,7 +8,8 @@ import com.google.gson.annotations.SerializedName
  * @Description     $PARAM$
  */
 
-class RedditResponse constructor(
+class RedditResponseDataChildren constructor(
+
         @SerializedName("data")
-        var data: RedditResponseData
+        var data: RedditResponseDataChildrenData
 )

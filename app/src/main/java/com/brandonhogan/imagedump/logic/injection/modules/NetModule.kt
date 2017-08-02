@@ -1,8 +1,8 @@
-package com.brandonhogan.imagedump.injection.modules
+package com.brandonhogan.imagedump.logic.injection.modules
 
 import android.os.Environment
-import com.brandonhogan.imagedump.injection.scopes.AppScope
-import com.brandonhogan.imagedump.network.RedditAPI
+import com.brandonhogan.imagedump.logic.injection.scopes.AppScope
+import com.brandonhogan.imagedump.logic.network.RedditAPI
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

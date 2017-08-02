@@ -1,4 +1,4 @@
-package com.brandonhogan.imagedump.network.responses
+package com.brandonhogan.imagedump.logic.network.responses
 
 import com.google.gson.annotations.SerializedName
 

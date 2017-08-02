@@ -1,4 +1,4 @@
-package com.brandonhogan.imagedump.network.requests
+package com.brandonhogan.imagedump.logic.network.requests
 
 /**
  * @Creator         bhogan

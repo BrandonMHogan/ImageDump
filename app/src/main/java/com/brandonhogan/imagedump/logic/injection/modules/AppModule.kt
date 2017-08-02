@@ -1,12 +1,12 @@
-package com.brandonhogan.imagedump.injection.modules
+package com.brandonhogan.imagedump.logic.injection.modules
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.brandonhogan.imagedump.ImagedumpApp
-import com.brandonhogan.imagedump.injection.schedulers.AppSchedulerProvider
-import com.brandonhogan.imagedump.injection.schedulers.SchedulerProvider
-import com.brandonhogan.imagedump.injection.scopes.AppScope
+import com.brandonhogan.imagedump.logic.injection.schedulers.AppSchedulerProvider
+import com.brandonhogan.imagedump.logic.injection.schedulers.SchedulerProvider
+import com.brandonhogan.imagedump.logic.injection.scopes.AppScope
 import dagger.Module
 import dagger.Provides
 

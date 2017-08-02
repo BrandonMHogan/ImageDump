@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import com.brandonhogan.imagedump.R
-import com.brandonhogan.imagedump.injection.Injector
-import com.brandonhogan.imagedump.injection.components.ActivityComponent
-import com.brandonhogan.imagedump.injection.components.DaggerActivityComponent
+import com.brandonhogan.imagedump.logic.injection.Injector
+import com.brandonhogan.imagedump.logic.injection.components.ActivityComponent
+import com.brandonhogan.imagedump.logic.injection.components.DaggerActivityComponent
 import timber.log.Timber
 
 /**

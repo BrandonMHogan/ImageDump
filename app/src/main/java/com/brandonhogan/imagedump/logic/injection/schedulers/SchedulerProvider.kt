@@ -1,4 +1,4 @@
-package com.brandonhogan.imagedump.injection.schedulers
+package com.brandonhogan.imagedump.logic.injection.schedulers
 
 import io.reactivex.Scheduler
 

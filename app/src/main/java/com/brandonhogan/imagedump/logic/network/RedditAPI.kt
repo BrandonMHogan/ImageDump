@@ -1,6 +1,6 @@
-package com.brandonhogan.imagedump.network
+package com.brandonhogan.imagedump.logic.network
 
-import com.brandonhogan.imagedump.network.responses.RedditResponse
+import com.brandonhogan.imagedump.logic.network.responses.RedditResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,6 +15,6 @@ interface RedditAPI {
 
     // Aww subreddit
     @GET("/r/aww/hot.json")
-    fun getAwwHot(@Query("after") after: Int, @Query("limit") limit: Int): Observable<RedditResponse>
+    fun getAwwHot(@Query("after") after: String, @Query("limit") limit: String): Observable<RedditResponse>
 
 }

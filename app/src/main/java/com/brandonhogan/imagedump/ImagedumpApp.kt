@@ -1,7 +1,7 @@
 package com.brandonhogan.imagedump
 
 import android.app.Application
-import com.brandonhogan.imagedump.injection.Injector
+import com.brandonhogan.imagedump.logic.injection.Injector
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 

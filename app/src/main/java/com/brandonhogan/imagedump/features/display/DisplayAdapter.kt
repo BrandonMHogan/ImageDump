@@ -1,18 +1,17 @@
 package com.brandonhogan.imagedump.features.display
 
-import android.graphics.Bitmap
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.brandonhogan.imagedump.R
-import com.brandonhogan.imagedump.business.GlideApp
+import com.brandonhogan.imagedump.logic.GlideApp
 import com.brandonhogan.imagedump.repository.models.DisplayItem
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.display_list_item.view.*
-import java.lang.Exception
+import timber.log.Timber
+
+
 
 /**
  * @Creator         bhogan
@@ -45,7 +44,8 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>): RecyclerView.Adapter<Di
 
     fun addMore(newItems: ArrayList<DisplayItem>) {
         items.addAll(newItems)
-        notifyItemRangeInserted(items.size - newItems.size, newItems.size)
+        notifyDataSetChanged()
+        //notifyItemRangeInserted(items.size - newItems.size, newItems.size)
     }
 
     /**
@@ -57,18 +57,14 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>): RecyclerView.Adapter<Di
 
             with(item) {
 
-                itemView.title.text = title
-                itemView.author.text = author
-
-
                 GlideApp.with(itemView)
                         .load(thumbnail)
-                        .centerCrop()
-                        .into(itemView.img_thumbnail)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(itemView.image)
 
-                itemView.time.text = createdUtc.toString()
 
-                itemView.progress.visibility = View.GONE
+                Timber.d("{azza}        thumbnail:  $thumbnail")
             }
         }
     }

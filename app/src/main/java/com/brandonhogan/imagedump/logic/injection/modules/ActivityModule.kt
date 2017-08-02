@@ -1,12 +1,12 @@
-package com.brandonhogan.imagedump.injection.modules
+package com.brandonhogan.imagedump.logic.injection.modules
 
 import com.brandonhogan.imagedump.features.display.DisplayContract
 import com.brandonhogan.imagedump.features.display.DisplayPresenter
 import com.brandonhogan.imagedump.features.splash.SplashContract
 import com.brandonhogan.imagedump.features.splash.SplashPresenter
-import com.brandonhogan.imagedump.injection.schedulers.SchedulerProvider
-import com.brandonhogan.imagedump.injection.scopes.ActivityScope
-import com.brandonhogan.imagedump.managers.RedditManager
+import com.brandonhogan.imagedump.logic.injection.schedulers.SchedulerProvider
+import com.brandonhogan.imagedump.logic.injection.scopes.ActivityScope
+import com.brandonhogan.imagedump.logic.managers.RedditManager
 import dagger.Module
 import dagger.Provides
 

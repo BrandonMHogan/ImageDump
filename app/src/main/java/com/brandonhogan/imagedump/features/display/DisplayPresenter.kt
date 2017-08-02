@@ -1,8 +1,8 @@
 package com.brandonhogan.imagedump.features.display
 
 import com.brandonhogan.imagedump.features.shared.base.BasePresenter
-import com.brandonhogan.imagedump.injection.schedulers.SchedulerProvider
-import com.brandonhogan.imagedump.managers.RedditManager
+import com.brandonhogan.imagedump.logic.injection.schedulers.SchedulerProvider
+import com.brandonhogan.imagedump.logic.managers.RedditManager
 import com.brandonhogan.imagedump.repository.models.DisplayItem
 import timber.log.Timber
 import javax.inject.Inject
@@ -28,11 +28,9 @@ class DisplayPresenter @Inject constructor(val schedulerProvider: SchedulerProvi
     }
 
 
-    override fun loadMore(page: Int) {
+    override fun loadItems(reset: Boolean) {
 
-        Timber.d("{aza}     Page is currently: $page")
-
-        redditManager.getAwwHot(page)
+        redditManager.getAwwHot(reset)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe({ items: ArrayList<DisplayItem> ->

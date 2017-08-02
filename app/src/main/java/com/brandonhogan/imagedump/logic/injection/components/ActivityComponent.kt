@@ -1,9 +1,9 @@
-package com.brandonhogan.imagedump.injection.components
+package com.brandonhogan.imagedump.logic.injection.components
 
 import com.brandonhogan.imagedump.features.display.DisplayActivity
 import com.brandonhogan.imagedump.features.splash.SplashActivity
-import com.brandonhogan.imagedump.injection.modules.ActivityModule
-import com.brandonhogan.imagedump.injection.scopes.ActivityScope
+import com.brandonhogan.imagedump.logic.injection.modules.ActivityModule
+import com.brandonhogan.imagedump.logic.injection.scopes.ActivityScope
 import dagger.Component
 
 /**

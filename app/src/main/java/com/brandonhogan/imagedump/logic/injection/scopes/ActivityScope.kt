@@ -1,4 +1,4 @@
-package com.brandonhogan.imagedump.injection.scopes
+package com.brandonhogan.imagedump.logic.injection.scopes
 
 import javax.inject.Scope
 
@@ -10,4 +10,4 @@ import javax.inject.Scope
 
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class AppScope
+annotation class ActivityScope

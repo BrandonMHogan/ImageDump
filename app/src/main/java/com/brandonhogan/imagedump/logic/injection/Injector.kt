@@ -1,9 +1,9 @@
-package com.brandonhogan.imagedump.injection
+package com.brandonhogan.imagedump.logic.injection
 
 import com.brandonhogan.imagedump.ImagedumpApp
-import com.brandonhogan.imagedump.injection.components.AppComponent
-import com.brandonhogan.imagedump.injection.components.DaggerAppComponent
-import com.brandonhogan.imagedump.injection.modules.AppModule
+import com.brandonhogan.imagedump.logic.injection.components.AppComponent
+import com.brandonhogan.imagedump.logic.injection.components.DaggerAppComponent
+import com.brandonhogan.imagedump.logic.injection.modules.AppModule
 
 /**
  * @Creator         bhogan

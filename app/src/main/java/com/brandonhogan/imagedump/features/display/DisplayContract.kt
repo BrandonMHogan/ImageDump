@@ -16,7 +16,7 @@ interface DisplayContract {
     }
 
     interface Presenter: BaseContract.Presenter<View, DisplayViewModel> {
-        fun loadMore(page: Int)
+        fun loadItems(reset: Boolean)
     }
 
 }
