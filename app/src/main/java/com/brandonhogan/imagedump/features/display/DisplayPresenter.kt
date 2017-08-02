@@ -35,7 +35,7 @@ class DisplayPresenter @Inject constructor(val schedulerProvider: SchedulerProvi
                 .observeOn(schedulerProvider.ui())
                 .subscribe({ items: ArrayList<DisplayItem> ->
 
-                    model?.items = items
+                    model?.items = ArrayList(items.filter { it.stickied == false })
                     view?.loadMore(items, reset)
 
                     Timber.d("Made it!")

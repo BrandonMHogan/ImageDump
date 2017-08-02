@@ -13,7 +13,7 @@ object Utils {
     fun calculateNoOfColumns(context: Context): Int {
         val displayMetrics = context.getResources().getDisplayMetrics()
         val dpWidth = displayMetrics.widthPixels / displayMetrics.density
-        val noOfColumns = (dpWidth / 190).toInt()
+        val noOfColumns = (dpWidth / 130).toInt()
         return noOfColumns
     }
 

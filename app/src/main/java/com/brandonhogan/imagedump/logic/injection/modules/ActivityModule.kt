@@ -2,6 +2,8 @@ package com.brandonhogan.imagedump.logic.injection.modules
 
 import com.brandonhogan.imagedump.features.display.DisplayContract
 import com.brandonhogan.imagedump.features.display.DisplayPresenter
+import com.brandonhogan.imagedump.features.item.ItemContract
+import com.brandonhogan.imagedump.features.item.ItemPresenter
 import com.brandonhogan.imagedump.features.splash.SplashContract
 import com.brandonhogan.imagedump.features.splash.SplashPresenter
 import com.brandonhogan.imagedump.logic.injection.schedulers.SchedulerProvider
@@ -29,5 +31,11 @@ class ActivityModule {
     @Provides
     fun provideDisplayPresenter(redditManager: RedditManager, schedulerProvider: SchedulerProvider): DisplayContract.Presenter {
         return DisplayPresenter(schedulerProvider, redditManager)
+    }
+
+    @ActivityScope
+    @Provides
+    fun provideItemPresenter(redditManager: RedditManager, schedulerProvider: SchedulerProvider): ItemContract.Presenter {
+        return ItemPresenter(schedulerProvider, redditManager)
     }
 }

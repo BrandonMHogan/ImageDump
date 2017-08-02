@@ -23,6 +23,7 @@
         </activity>
 
         <activity android:name=".features.display.DisplayActivity"/>
+        <activity android:name=".features.item.ItemActivity"/>
 
     </application>
 

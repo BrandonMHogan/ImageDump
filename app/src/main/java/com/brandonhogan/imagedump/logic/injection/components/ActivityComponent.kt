@@ -1,6 +1,7 @@
 package com.brandonhogan.imagedump.logic.injection.components
 
 import com.brandonhogan.imagedump.features.display.DisplayActivity
+import com.brandonhogan.imagedump.features.item.ItemActivity
 import com.brandonhogan.imagedump.features.splash.SplashActivity
 import com.brandonhogan.imagedump.logic.injection.modules.ActivityModule
 import com.brandonhogan.imagedump.logic.injection.scopes.ActivityScope
@@ -18,4 +19,5 @@ interface ActivityComponent {
 
     fun inject(splashActivity: SplashActivity)
     fun inject(displayActivity: DisplayActivity)
+    fun inject(itemActivity: ItemActivity)
 }

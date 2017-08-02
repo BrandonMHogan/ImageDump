@@ -19,11 +19,11 @@ import timber.log.Timber
  * @Description     $PARAM$
  */
 
-class DisplayAdapter(val items: ArrayList<DisplayItem>): RecyclerView.Adapter<DisplayAdapter.ViewHolder>() {
+class DisplayAdapter(val items: ArrayList<DisplayItem>, val itemClick: (DisplayItem, View) -> Unit): RecyclerView.Adapter<DisplayAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.display_list_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, itemClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -56,7 +56,7 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>): RecyclerView.Adapter<Di
     /**
      * View holder for the property list
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (DisplayItem, View) -> Unit) : RecyclerView.ViewHolder(view) {
 
         fun bindProperty(item: DisplayItem) {
 
@@ -68,8 +68,7 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>): RecyclerView.Adapter<Di
                         .placeholder(R.mipmap.ic_launcher)
                         .into(itemView.image)
 
-
-                Timber.d("{azza}        thumbnail:  $thumbnail")
+                itemView.setOnClickListener { itemClick(this, itemView) }
             }
         }
     }

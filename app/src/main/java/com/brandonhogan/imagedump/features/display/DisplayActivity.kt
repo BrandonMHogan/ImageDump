@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import com.brandonhogan.imagedump.R
 import com.brandonhogan.imagedump.features.shared.base.BaseActivity
 import javax.inject.Inject
@@ -12,6 +11,10 @@ import android.support.v7.widget.RecyclerView
 import com.brandonhogan.imagedump.logic.utils.Utils
 import com.brandonhogan.imagedump.repository.models.DisplayItem
 import kotlinx.android.synthetic.main.activity_display.*
+import android.support.v4.app.ActivityOptionsCompat
+import android.content.Intent
+import android.view.View
+import com.brandonhogan.imagedump.features.item.ItemActivity
 
 
 /**
@@ -39,6 +42,7 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
         val model = ViewModelProviders.of(this).get(DisplayViewModel::class.java)
         presenter.attach(this, model)
 
+        title = getString(R.string.app_name)
 
         // Setup recyclerview
         val layoutManager = GridLayoutManager(this, Utils.calculateNoOfColumns(this))
@@ -53,7 +57,9 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
             }
         }
 
-        adapter = DisplayAdapter(ArrayList<DisplayItem>())
+        adapter = DisplayAdapter(ArrayList<DisplayItem>(), { item, view ->
+            onItemClick(item, view)
+        })
         display_list.adapter = adapter
         display_list.addOnScrollListener(scrollListener)
         swipe_refresh.setOnRefreshListener(this)
@@ -73,5 +79,16 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
     override fun loadMore(items: ArrayList<DisplayItem>, reset: Boolean) {
         adapter.addMore(items, reset)
         swipe_refresh.isRefreshing = false
+    }
+
+
+    fun onItemClick(displayItem: DisplayItem, view: View) {
+
+        val intent = Intent(this, ItemActivity::class.java)
+        // Pass data object in the bundle and populate details activity.
+        intent.putExtra("item", displayItem)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, "displayImage")
+        startActivity(intent, options.toBundle())
+
     }
 }
