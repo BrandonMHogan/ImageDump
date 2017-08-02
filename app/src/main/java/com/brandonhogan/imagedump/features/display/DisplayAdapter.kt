@@ -42,7 +42,12 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>): RecyclerView.Adapter<Di
         return items.isEmpty()
     }
 
-    fun addMore(newItems: ArrayList<DisplayItem>) {
+    fun addMore(newItems: ArrayList<DisplayItem>, reset: Boolean = false) {
+
+        // Will clear the current items from the list first
+        if (reset)
+            items.clear()
+
         items.addAll(newItems)
         notifyDataSetChanged()
         //notifyItemRangeInserted(items.size - newItems.size, newItems.size)

@@ -61,11 +61,17 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
         presenter.loadItems(reset = true)
     }
 
+
     override fun onRefresh() {
         scrollListener.resetState()
+        presenter.loadItems(reset = true)
     }
 
-    override fun loadMore(items: ArrayList<DisplayItem>) {
-        adapter.addMore(items)
+    /**
+     * Adds the items to the adapter
+     */
+    override fun loadMore(items: ArrayList<DisplayItem>, reset: Boolean) {
+        adapter.addMore(items, reset)
+        swipe_refresh.isRefreshing = false
     }
 }

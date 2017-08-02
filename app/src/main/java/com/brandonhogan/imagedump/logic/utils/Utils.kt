@@ -1,9 +1,6 @@
 package com.brandonhogan.imagedump.logic.utils
 
 import android.content.Context
-import android.util.DisplayMetrics
-
-
 
 /**
  * @Creator         bhogan
@@ -16,7 +13,7 @@ object Utils {
     fun calculateNoOfColumns(context: Context): Int {
         val displayMetrics = context.getResources().getDisplayMetrics()
         val dpWidth = displayMetrics.widthPixels / displayMetrics.density
-        val noOfColumns = (dpWidth / 180).toInt()
+        val noOfColumns = (dpWidth / 190).toInt()
         return noOfColumns
     }
 

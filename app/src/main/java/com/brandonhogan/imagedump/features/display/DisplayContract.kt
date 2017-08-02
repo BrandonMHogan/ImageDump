@@ -12,7 +12,7 @@ import com.brandonhogan.imagedump.repository.models.DisplayItem
 interface DisplayContract {
 
     interface View {
-        fun loadMore(items: ArrayList<DisplayItem>)
+        fun loadMore(items: ArrayList<DisplayItem>, reset: Boolean)
     }
 
     interface Presenter: BaseContract.Presenter<View, DisplayViewModel> {
