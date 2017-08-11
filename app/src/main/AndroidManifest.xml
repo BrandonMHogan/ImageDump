@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/MyLightTheme">
+        android:theme="@style/MyDarkTheme">
 
 
         <activity android:name=".features.splash.SplashActivity"
@@ -22,8 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.display.DisplayActivity"/>
-        <activity android:name=".features.item.ItemActivity"/>
+        <activity android:name=".features.display.DisplayActivity" android:theme="@style/MyLightTheme"/>
+        <activity android:name=".features.item.ItemActivity" android:theme="@style/MyLightTheme"/>
 
     </application>
 

@@ -9,6 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
     </style>
 
     <!-- Use this to switch to Dark theme -->
@@ -21,6 +23,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
     </style>
 
     <!-- Base splash theme -->
@@ -32,6 +36,15 @@
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+
+    <style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/item_title_color</item>
     </style>
 
 </resources>
