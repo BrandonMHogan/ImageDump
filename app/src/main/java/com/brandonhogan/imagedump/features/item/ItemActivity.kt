@@ -11,9 +11,12 @@ import com.brandonhogan.imagedump.repository.models.DisplayItem
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase
 import kotlinx.android.synthetic.main.activity_item.*
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -40,23 +43,51 @@ class ItemActivity: BaseActivity(), ItemContract.View {
         val displayItem = intent.getParcelableExtra<DisplayItem>("item")
         title = displayItem.title
 
+        image.displayType = ImageViewTouchBase.DisplayType.FIT_TO_SCREEN
+
+        if(displayItem.source.contains(".gif")) {
+            loadGif(displayItem.source)
+        }
+        else {
+            loadImage(displayItem.source)
+        }
+    }
+
+    /**
+     * Loads the image source
+     */
+    fun loadImage(source: String) {
+
         supportPostponeEnterTransition()
 
-            GlideApp.with(this)
-                    .load(displayItem.source)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .listener(object: RequestListener<Drawable> {
-                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                            supportStartPostponedEnterTransition()
-                            return false
-                        }
+        GlideApp.with(this)
+                .load(source)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .listener(object: RequestListener<Drawable> {
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        supportStartPostponedEnterTransition()
+                        return false
+                    }
 
-                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                            supportStartPostponedEnterTransition()
-                            return false
-                        }
-                    })
-                    .into(image)
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        Timber.e("Image failed $model,    $e")
+                        supportStartPostponedEnterTransition()
+                        return false
+                    }
+                })
+                .into(image)
+    }
+
+    /**
+     * Loads the gif source
+     */
+    fun loadGif(source: String) {
+
+        GlideApp.with(this)
+                .asGif()
+                .load(source)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(image)
     }
 
 }

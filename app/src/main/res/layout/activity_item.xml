@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+
+    <it.sephiroth.android.library.imagezoom.ImageViewTouch
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:transitionName="@string/transition_name_display_item_image"
         tools:ignore="UnusedAttribute"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-         />
+        android:contentDescription="@null" />
 
 </LinearLayout>

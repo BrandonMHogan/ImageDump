@@ -28,10 +28,17 @@ class DisplayItem constructor(
                 val item = it.data
 
                 var thumbnail = item.thumbnail
-                var source = item.preview.images.get(0).source.url
+                var source = item.preview.images[0].source.url
 
                 thumbnail = thumbnail.replace("&amp;s", "&")
-                source = source.replace("&amp;s", "&")
+
+
+                if(item.preview.images[0].variants.gif == null || item.preview.images[0].variants.gif.source.url.isNullOrEmpty())
+                    source = source.replace("&amp;s", "&")
+                else
+                    source = item.preview.images[0].variants.gif.source.url
+
+
 
                 DisplayItem(item.title, item.author, item.created_utc, source, thumbnail, item.stickied)
             }

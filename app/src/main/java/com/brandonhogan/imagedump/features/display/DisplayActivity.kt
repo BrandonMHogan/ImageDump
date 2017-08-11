@@ -16,6 +16,7 @@ import android.content.Intent
 import android.support.v4.view.ViewCompat
 import android.view.View
 import com.brandonhogan.imagedump.features.item.ItemActivity
+import com.brandonhogan.imagedump.utils.NetworkUtils
 import com.google.android.gms.ads.AdRequest
 
 
@@ -59,9 +60,14 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
             }
         }
 
-        adapter = DisplayAdapter(ArrayList<DisplayItem>(), { item, view ->
-            onItemClick(item, view)
-        })
+        adapter = DisplayAdapter(
+                    ArrayList<DisplayItem>(),
+                    NetworkUtils.isOnWifi(this),
+                    { item, view ->
+                        onItemClick(item, view)
+                    }
+        )
+
         display_list.adapter = adapter
         display_list.addOnScrollListener(scrollListener)
         swipe_refresh.setOnRefreshListener(this)

@@ -24,11 +24,13 @@ import timber.log.Timber
  * @Description     $PARAM$
  */
 
-class DisplayAdapter(val items: ArrayList<DisplayItem>, val itemClick: (DisplayItem, View) -> Unit): RecyclerView.Adapter<DisplayAdapter.ViewHolder>() {
+class DisplayAdapter(val items: ArrayList<DisplayItem>, val isOnWifi: Boolean = false, val itemClick: (DisplayItem, View) -> Unit): RecyclerView.Adapter<DisplayAdapter.ViewHolder>() {
+
+    private val LOAD_ATTEMPTS = 2
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.display_list_item, parent, false)
-        return ViewHolder(view, itemClick)
+        return ViewHolder(view, LOAD_ATTEMPTS, isOnWifi, itemClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -61,45 +63,70 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>, val itemClick: (DisplayI
     /**
      * View holder for the property list
      */
-    class ViewHolder(view: View, val itemClick: (DisplayItem, View) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val loadAttempts: Int = 1, val isOnWifi: Boolean, val itemClick: (DisplayItem, View) -> Unit) : RecyclerView.ViewHolder(view) {
 
         fun bindProperty(item: DisplayItem) {
 
             with(item) {
                 itemView.progress.visibility = View.VISIBLE
 
-                GlideApp.with(itemView)
-                        .load(thumbnail)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(object: RequestListener<Drawable> {
-
-                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                itemView.progress.visibility = View.GONE
-
-                                target!!.getSize { width, height ->
-                                    GlideApp.with(itemView).load(source).preload(width,height)
-                                }
-                                return false
-                            }
-
-                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                itemView.progress.visibility = View.GONE
-                                return false
-                            }
-
-                    })
-                        .into(itemView.image)
-
-//
-//                GlideApp.with(itemView)
-//                        .load(source)
-//                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                        .into(itemView.image)
+                // Will try and load the thumbnail and source
+                tryToLoad(loadAttempts, thumbnail, source)
 
                 itemView.setOnClickListener {
 
                     //GlideApp.with(itemView).load(source).into(itemView.image)
                     itemClick(this, itemView.image) }
+            }
+        }
+
+
+        /**
+         * Will try and load the image. If it fails, will try again until tries = 0
+         */
+        fun tryToLoad(tries: Int, thumbnail: String, source: String = "") {
+
+            if(tries > 0) {
+
+                GlideApp.with(itemView)
+                        .load(thumbnail)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .listener(object : RequestListener<Drawable> {
+
+                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                itemView.progress.visibility = View.GONE
+
+                                target!!.getSize { width, height ->
+                                    GlideApp.with(itemView).load(source).preload(width, height)
+                                }
+
+                                if (isOnWifi) {
+                                    Timber.d("{bbvb}     Is on wifi. Pre loading Source = $source")
+                                    GlideApp.with(itemView)
+                                            .load(source)
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .preload()
+                                }
+
+                                return false
+                            }
+
+                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+
+                                Timber.d("{bbvb}     Failed to load. With $tries remaining")
+                                // Will try and load the image a second time
+                                tryToLoad(tries - 1, thumbnail, source)
+                                return false
+                            }
+
+                        })
+                        .into(itemView.image)
+
+            }
+            // Will only be accessed if image failed to load more then the tries times
+            else {
+                Timber.d("{bbvb}     Failed to load. With $tries remaining.")
+                itemView.progress.visibility = View.GONE
             }
         }
     }

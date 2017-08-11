@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:transitionName="@string/transition_name_display_item_image"
         tools:ignore="UnusedAttribute"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:contentDescription="@null"
         android:scaleType="centerCrop" />
 
@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:transitionName="@string/transition_name_display_item_image"
         tools:ignore="UnusedAttribute"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
         android:visibility="gone"/>
