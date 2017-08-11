@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">ImageDump</string>
+    <string name="app_name">Image Dump</string>
+    <string name="admob_app_id">ca-app-pub-4181582219426450~7946861064</string>
+    <string name="admob_unit_id_display_list">ca-app-pub-4181582219426450/6014654687</string>
+    <string name="admob_unit_id_testing">ca-app-pub-3940256099942544/6300978111</string>
+
+
     <string name="pref_key_theme_dark">prefKeyThemeDark</string>
 
 

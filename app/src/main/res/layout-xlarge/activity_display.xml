@@ -22,7 +22,7 @@
         android:id="@+id/ad_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ads:adSize="BANNER"
+        ads:adSize="FULL_BANNER"
         ads:adUnitId="@string/admob_unit_id_testing">
     </com.google.android.gms.ads.AdView>
 

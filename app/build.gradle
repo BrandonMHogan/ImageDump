@@ -49,6 +49,9 @@ dependencies {
     implementation rootProject.ext.supportLibConstraintLayout
     implementation rootProject.ext.supportLibCardview
 
+    // play services
+    implementation rootProject.ext.playServiceAds
+
     // architecture components
     implementation rootProject.ext.archCompLifecycle
     implementation rootProject.ext.archCompLifecycleExt

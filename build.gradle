@@ -60,6 +60,7 @@ ext {
     //google play services
     playServiceBase = "com.google.android.gms:play-services-base:$playServicesVersion"
     playServiceAnalytics = "com.google.android.gms:play-services-analytics:$playServicesVersion"
+    playServiceAds = "com.google.android.gms:play-services-ads:$playServicesVersion"
 
     // Firebase
     firebaseCore = "com.google.firebase:firebase-core:$firebaseVersion"

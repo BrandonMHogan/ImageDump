@@ -16,6 +16,7 @@ import android.content.Intent
 import android.support.v4.view.ViewCompat
 import android.view.View
 import com.brandonhogan.imagedump.features.item.ItemActivity
+import com.google.android.gms.ads.AdRequest
 
 
 /**
@@ -66,6 +67,10 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
         swipe_refresh.setOnRefreshListener(this)
 
         presenter.loadItems(reset = true)
+
+
+        val adRequest = AdRequest.Builder().build()
+        ad_view.loadAd(adRequest)
     }
 
 

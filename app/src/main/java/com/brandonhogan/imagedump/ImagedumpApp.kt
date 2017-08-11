@@ -2,6 +2,7 @@ package com.brandonhogan.imagedump
 
 import android.app.Application
 import com.brandonhogan.imagedump.logic.injection.Injector
+import com.google.android.gms.ads.MobileAds
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
@@ -30,6 +31,9 @@ class ImagedumpApp: Application() {
 
         // Logging
         Timber.plant(Timber.DebugTree())
+
+        // Admob
+        MobileAds.initialize(this, getString(R.string.admob_app_id))
 
     }
 
