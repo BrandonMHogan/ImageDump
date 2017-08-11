@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ImageDump</string>
     <string name="pref_key_theme_dark">prefKeyThemeDark</string>
+
+
+
+    <string name="transition_name_display_item_image">transitionNameDisplayItemImage</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.brandonhogan.imagedump.features.display
 
+import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,11 @@ import android.view.ViewGroup
 import com.brandonhogan.imagedump.R
 import com.brandonhogan.imagedump.logic.GlideApp
 import com.brandonhogan.imagedump.repository.models.DisplayItem
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.display_list_item.view.*
 import timber.log.Timber
 
@@ -61,14 +66,40 @@ class DisplayAdapter(val items: ArrayList<DisplayItem>, val itemClick: (DisplayI
         fun bindProperty(item: DisplayItem) {
 
             with(item) {
+                itemView.progress.visibility = View.VISIBLE
 
                 GlideApp.with(itemView)
                         .load(thumbnail)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .placeholder(R.mipmap.ic_launcher)
+                        .listener(object: RequestListener<Drawable> {
+
+                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                itemView.progress.visibility = View.GONE
+
+                                target!!.getSize { width, height ->
+                                    GlideApp.with(itemView).load(source).preload(width,height)
+                                }
+                                return false
+                            }
+
+                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                itemView.progress.visibility = View.GONE
+                                return false
+                            }
+
+                    })
                         .into(itemView.image)
 
-                itemView.setOnClickListener { itemClick(this, itemView) }
+//
+//                GlideApp.with(itemView)
+//                        .load(source)
+//                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                        .into(itemView.image)
+
+                itemView.setOnClickListener {
+
+                    //GlideApp.with(itemView).load(source).into(itemView.image)
+                    itemClick(this, itemView.image) }
             }
         }
     }

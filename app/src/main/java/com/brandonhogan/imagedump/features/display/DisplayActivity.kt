@@ -13,6 +13,7 @@ import com.brandonhogan.imagedump.repository.models.DisplayItem
 import kotlinx.android.synthetic.main.activity_display.*
 import android.support.v4.app.ActivityOptionsCompat
 import android.content.Intent
+import android.support.v4.view.ViewCompat
 import android.view.View
 import com.brandonhogan.imagedump.features.item.ItemActivity
 
@@ -87,7 +88,7 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
         val intent = Intent(this, ItemActivity::class.java)
         // Pass data object in the bundle and populate details activity.
         intent.putExtra("item", displayItem)
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, "displayImage")
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getString(R.string.transition_name_display_item_image))
         startActivity(intent, options.toBundle())
 
     }

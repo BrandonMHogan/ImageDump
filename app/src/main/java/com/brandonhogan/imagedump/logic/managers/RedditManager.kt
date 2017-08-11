@@ -27,7 +27,7 @@ class RedditManager constructor(val api: RedditAPI) {
 
         return Observable.create { subscribe ->
 
-            api.getAwwHot(after, "10").subscribe({ response: RedditResponse ->
+            api.getAwwHot(after, "90").subscribe({ response: RedditResponse ->
 
                 after = response.data.after
                 val displayItems: ArrayList<DisplayItem> = DisplayItem.fromResponse(response)
