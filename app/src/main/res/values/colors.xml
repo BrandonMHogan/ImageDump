@@ -8,8 +8,7 @@
     <color name="splash_background">#343434</color>
 
 
-
-    <color name="item_card_background_color">#33191919</color>
+    <color name="item_card_background_color">#FF424242</color>
     <color name="item_title_color">#DCDCDC</color>
     <color name="item_author_color">#D3D3D3</color>
     <color name="item_date_color">#D3D3D3</color>

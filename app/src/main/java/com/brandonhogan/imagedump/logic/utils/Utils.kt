@@ -10,7 +10,15 @@ import android.content.Context
 
 object Utils {
 
-    fun calculateNoOfColumns(context: Context): Int {
+
+    fun calculateNoOfColumns170(context: Context): Int {
+        val displayMetrics = context.getResources().getDisplayMetrics()
+        val dpWidth = displayMetrics.widthPixels / displayMetrics.density
+        val noOfColumns = (dpWidth / 170).toInt()
+        return noOfColumns
+    }
+
+    fun calculateNoOfColumns130(context: Context): Int {
         val displayMetrics = context.getResources().getDisplayMetrics()
         val dpWidth = displayMetrics.widthPixels / displayMetrics.density
         val noOfColumns = (dpWidth / 130).toInt()

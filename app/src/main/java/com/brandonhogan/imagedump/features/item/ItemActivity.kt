@@ -38,7 +38,7 @@ class ItemActivity: BaseActivity(), ItemContract.View {
 
 
         val displayItem = intent.getParcelableExtra<DisplayItem>("item")
-        title = displayItem.title
+        title_view.text = displayItem.title
 
         if(displayItem.source.contains(".gif")) {
             loadGif(displayItem.source)

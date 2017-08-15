@@ -1,4 +1,4 @@
-package com.brandonhogan.imagedump.utils
+package com.brandonhogan.imagedump.logic.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

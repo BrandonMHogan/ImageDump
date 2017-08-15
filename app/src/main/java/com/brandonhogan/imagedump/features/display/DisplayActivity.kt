@@ -13,10 +13,9 @@ import com.brandonhogan.imagedump.repository.models.DisplayItem
 import kotlinx.android.synthetic.main.activity_display.*
 import android.support.v4.app.ActivityOptionsCompat
 import android.content.Intent
-import android.support.v4.view.ViewCompat
 import android.view.View
 import com.brandonhogan.imagedump.features.item.ItemActivity
-import com.brandonhogan.imagedump.utils.NetworkUtils
+import com.brandonhogan.imagedump.logic.utils.NetworkUtils
 import com.google.android.gms.ads.AdRequest
 
 
@@ -48,7 +47,7 @@ class DisplayActivity : BaseActivity(), DisplayContract.View, SwipeRefreshLayout
         title = getString(R.string.app_name)
 
         // Setup recyclerview
-        val layoutManager = GridLayoutManager(this, Utils.calculateNoOfColumns(this))
+        val layoutManager = GridLayoutManager(this, Utils.calculateNoOfColumns130(this))
         display_list.layoutManager = layoutManager
 
         // Retain an instance so that you can call `resetState()` for fresh searches
