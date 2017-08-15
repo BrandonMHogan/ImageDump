@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <it.sephiroth.android.library.imagezoom.ImageViewTouch
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/image"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_marginBottom="0dp"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
         android:transitionName="@string/transition_name_display_item_image"
-        tools:ignore="UnusedAttribute"
-        android:contentDescription="@null" />
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

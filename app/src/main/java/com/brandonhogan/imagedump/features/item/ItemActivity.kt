@@ -3,7 +3,6 @@ package com.brandonhogan.imagedump.features.item
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.ViewTreeObserver
 import com.brandonhogan.imagedump.R
 import com.brandonhogan.imagedump.features.shared.base.BaseActivity
 import com.brandonhogan.imagedump.logic.GlideApp
@@ -11,10 +10,8 @@ import com.brandonhogan.imagedump.repository.models.DisplayItem
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import it.sephiroth.android.library.imagezoom.ImageViewTouchBase
 import kotlinx.android.synthetic.main.activity_item.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -42,8 +39,6 @@ class ItemActivity: BaseActivity(), ItemContract.View {
 
         val displayItem = intent.getParcelableExtra<DisplayItem>("item")
         title = displayItem.title
-
-        image.displayType = ImageViewTouchBase.DisplayType.FIT_TO_SCREEN
 
         if(displayItem.source.contains(".gif")) {
             loadGif(displayItem.source)
